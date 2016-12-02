@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		table, tr, td{
+			border: solid 1px;
+		}
+		.mostDuplicate{
+			background-color: rgba(0, 184, 255, 0.48);
+		}
+		td {
+		   display: table-cell;
+		}
+		thead>tr>td{
+			background-color: rgba(255, 235, 0, 0.87);
+		}
+		#div_requeriment_d{
+			display: none;
+		}
+	</style>
+</head>
+<body >
+<textarea id="inputTextArea" cols="30" rows="10"></textarea>
+<button id="btnGetReport">Get Report</button>
+<a href="input.txt" download="input.txt">Download Input</a>
+<table id="requeriment_b" cellpadding="0" cellspacing="0" width="50%">
+	<thead>
+		<tr>
+			<td>Set</td>
+			<td>Duplicates</td>
+			<td>Non Duplicates</td>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+<br>
+<div>
+	<div>
+	<legend>The set "<span id="sSet"></span>" with <span id="sCount"></span> repetitions, is the set wiht more duplicates.</legend>
+</div>
+</div>
+<br>
+<div id="div_requeriment_d">
+	<legend>Items not valid</legend>
+	<ul id="requeriment_d"></ul>
+</div>
+</body>
+	<script type="text/javascript" src="js/utilities.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</html>
