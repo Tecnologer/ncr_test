@@ -1,0 +1,19 @@
+.container{
+	margin-top:10px;
+}
+.mostDuplicate{
+	background-color: rgba(0, 184, 255, 0.48);
+}
+td {
+   display: table-cell;
+}
+thead>tr>td{
+	background-color: rgba(255, 235, 0, 0.87);
+}
+#div_requeriment_d{
+	display: none;
+}
+textarea{
+	height: 100px !important;
+	resize: none;
+}
