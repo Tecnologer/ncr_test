@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="form-group" id="mostDuplicated" style="display: none;">
-						<legend>The set "<span id="sSet"></span>" with <span id="sCount"></span> repetitions, is the set with more duplicates.</legend>
+						<legend>The set "<span id="sSet" class="mostDuplicate"></span>" with <span id="sCount"></span> repetitions, is the set with more duplicates.</legend>
 					</div>
 					<div class="form-group">
 						<div id="div_requeriment_d">
@@ -51,12 +51,26 @@
 							<ul id="requeriment_d"></ul>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<legend>Big O Notation</legend>
+						</div>
+						<div class="col-xs-12">
+							<ul>
+								<li>n = quantity of sets</li>
+								<li>m = elements in each set</li>
+								<li>d = sets duplicates</li>
+							</ul>
+
+							<div class="col-xs-3">
+								<div class="form-control bolder">O (((n-d)*(n-1))*m)</div>
+							</div>
+						</div>
+					</div>
 					<div class="row hidden" id="dialog">
 						<div class="container">
 							<div class="dialog-title  border-bottom">
-								<div class="col-md-11 col-sm-11 col-xs-11" id="dialogTitle-label">
-									Hola mundo
-								</div>
+								<div class="col-md-11 col-sm-11 col-xs-11" id="dialogTitle-label"></div>
 								<div class="col-md-1 col-sm-1 col-xs-1" style="text-align: right;">
 									<span class="glyphicon glyphicon-remove cursor" id="closeDialog"></span>								
 								</div>

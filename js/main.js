@@ -10,12 +10,12 @@ function main() {
             var util = new Utilities(input);
             setTimeout(function() {
                 report = util.getReportInformation();
+                var time2 = new Date();
+                console.log(time2.getTime() - time1.getTime());
                 showReport(report.information);
                 showInvalids(report.setsNotValid);
                 hideLoading();
 
-                var time2 = new Date();
-                console.log(time2.getTime() - time1.getTime());
             }, 1);
         }, 1);
     } else {
@@ -34,7 +34,7 @@ function showReport(reportInfo) {
     document.getElementById("mostDuplicated").style.display = "none";
     Object.keys(reportInfo).forEach(function(set, i) {
 
-        if (reportInfo[mostDuplicate] == undefined || reportInfo[mostDuplicate].duplicates == undefined || (reportInfo[mostDuplicate].duplicates && reportInfo[set].duplicates && reportInfo[mostDuplicate].duplicates.length < reportInfo[set].duplicates.length)) {
+        if (reportInfo[mostDuplicate] == undefined || (reportInfo[mostDuplicate].duplicates.length < reportInfo[set].duplicates.length)) {
             mostDuplicate = set;
         }
 
@@ -71,7 +71,7 @@ function showInvalids(invalids) {
     // for (var i = 0; i < invalids.length; i++) {
     Object.keys(invalids).forEach(function(nv, i) {
         var li = document.createElement("li");
-        li.innerHTML = '<span class="bolder">' + nv + "</span> => appear " + invalids[nv] + " times.";
+        li.innerHTML = '<span class="bolder">' + (nv == ""? "[Empty String]" : nv) + "</span> => appear " + invalids[nv] + " times.";
         ul.appendChild(li);
 
     });
