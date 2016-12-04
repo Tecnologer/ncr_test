@@ -1,8 +1,10 @@
 var time1 = new Date();
 var report;
-
+var totalRecords = 0;
 function main() {
     time1 = new Date();
+
+    totalRecords = 0;
     var input = getInput();
     if (input) {
         showLoading();
@@ -16,13 +18,16 @@ function main() {
                 showInvalids(report.setsNotValid);
                 hideLoading();
 
+                document.getElementById("totalSets").innerHTML = totalRecords;
             }, 1);
         }, 1);
     } else {
         document.getElementById("requeriment_b").tBodies[0].innerHTML = "";
         document.getElementById("requeriment_d").innerHTML = "";
         document.getElementById("div_requeriment_d").style.display = "none";
+        document.getElementById("totalSets").innerHTML = totalRecords;
     }
+
 
 }
 
@@ -31,7 +36,8 @@ function showReport(reportInfo) {
     var mostDuplicate = "";
     var tbody = document.getElementById("requeriment_b").tBodies[0];
     tbody.innerHTML = "";
-    document.getElementById("mostDuplicated").style.display = "none";
+    document.getElementById("mostDuplicated").style.display = "none";    
+    
     Object.keys(reportInfo).forEach(function(set, i) {
 
         if (reportInfo[mostDuplicate] == undefined || (reportInfo[mostDuplicate].duplicates.length < reportInfo[set].duplicates.length)) {
@@ -60,6 +66,8 @@ function showReport(reportInfo) {
             document.getElementById("sSet").innerHTML = mostDuplicate;
             document.getElementById("sCount").innerHTML = reportInfo[mostDuplicate].duplicates.length;
             document.getElementById(mostDuplicate).className = "mostDuplicate";
+
+            totalRecords += 1 + reportInfo[mostDuplicate].duplicates.length + reportInfo[mostDuplicate].nonDuplicates.length;
         }
     });
 
@@ -68,12 +76,14 @@ function showReport(reportInfo) {
 function showInvalids(invalids) {
     var ul = document.getElementById("requeriment_d");
     ul.innerHTML = "";
+    var x=0;
     // for (var i = 0; i < invalids.length; i++) {
     Object.keys(invalids).forEach(function(nv, i) {
         var li = document.createElement("li");
         li.innerHTML = '<span class="bolder">' + (nv == ""? "[Empty String]" : nv) + "</span> => appear " + invalids[nv] + " times.";
         ul.appendChild(li);
 
+        totalRecords += invalids[nv];
     });
 
     document.getElementById("div_requeriment_d").style.display = Object.keys(invalids).length > 0 ? "block" : "none";
