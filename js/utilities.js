@@ -1,7 +1,7 @@
 function Utilities(input) {
     var matchesIndex = [];
     var matches = {};
-    var notValid = [];
+    var notValid = {};
 
     var items = input.split("\n")
         .map(function(val) {
@@ -10,7 +10,7 @@ function Utilities(input) {
             return val.split(",");
         });
 
-    setsAreEquals = function(set1, set2) {
+    var setsAreEquals = function(set1, set2) {
         // if the other array is a false value, return
         if (!set2)
             return false;
@@ -22,7 +22,6 @@ function Utilities(input) {
         set1 = set1.map(Number).sort();
         set2 = set2.map(Number).sort();
         for (var i = 0, l = set1.length; i < l; i++) {
-            // Check if we have nested arrays
             if (set1[i] != set2[i]) {
                 return false;
             }
@@ -30,32 +29,29 @@ function Utilities(input) {
         return true;
     };
 
-    setIsValid = function(set) {
+    var setIsValid = function(set) {
         for (var i = 0; i < set.length; i++) {
-            if (isNaN(set[i]) || set[i] === "" || set[i] == undefined)
+            if (isNaN(set[i]) || set[i] === "" || set[i] == undefined || !Number.isInteger(Number(set[i])))
                 return false;
         }
         return true;
     };
 
-    addDuplicated = function(pivot, duplicate) {
-        if (matches[pivot] !== null && typeof matches[pivot] !== 'object')
-                matches[pivot] = {duplicates: [], nonDuplicates: []};
-
+    var addDuplicated = function(pivot, duplicate) {
         matches[pivot].duplicates.push(duplicate);
     };
 
-    addNonDuplicated = function(pivot, duplicate) {
-        if (matches[pivot] !== null && typeof matches[pivot] !== 'object')
-                matches[pivot] = {duplicates: [], nonDuplicates: []};
-
+    var addNonDuplicated = function(pivot, duplicate) {
         matches[pivot].nonDuplicates.push(duplicate);
     };
 
-    addNotValid = function(set){
+    var addNotValid = function(set){
         var nv = set.toString();
-        if (notValid.indexOf(nv) == -1) 
-            notValid.push(nv);
+
+        if (notValid[nv] == null) 
+            notValid[nv] = 0;
+
+        notValid[nv]++;
     }
 
     return {
@@ -63,9 +59,13 @@ function Utilities(input) {
             var i = 0,
                 len = items.length;
 
+            
             for (i = 0; i < len; i++) {
-                if (matchesIndex.indexOf(i) == -1 && notValid.indexOf(items[i].toString()) == -1) {
+                if (matchesIndex.indexOf(i) == -1) {
                     if (setIsValid(items[i])) {
+                        if (matches[items[i]] !== null && typeof matches[items[i]] !== 'object')
+                                matches[items[i]] = {duplicates: [], nonDuplicates: []};
+
                         for (var j = i + 1; j < len; j++) {
                             if (setIsValid(items[j])) {
                                 if (setsAreEquals(items[i], items[j])) {
@@ -89,9 +89,7 @@ function Utilities(input) {
                     else {
                         addNotValid(items[i]);
                     }
-
                 } /**/
-
             }
 
             return {

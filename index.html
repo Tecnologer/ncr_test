@@ -16,12 +16,15 @@
 						</div>
 					</div>
 					<div class="form-group">						
-						<div class="col-md-6">
+						<div class="col-md-6" id="divButton">
 							<button id="btnGetReport" class="btn btn-primary btn-md">Get Report</button>
+						</div>
+						<div class="col-md-6" id="divLoader" style="display: none;">
+							<img src="img/loader.gif" alt="Loading report">
 						</div>
 					</div>
 					<div class="form-group">
-						<a href="input.txt" download="input.txt">Download Input</a>
+						<a href="input.txt" download="input.txt">Download Input Sample</a>
 						&nbsp;|&nbsp;
 						<a href="NCR Software Engineer Qualification Test - Duplicates.pdf" download="Requeriments.pdf">Download Requeriments</a>
 					</div>
@@ -30,22 +33,37 @@
 							<table id="requeriment_b" class="table">
 								<thead>
 									<tr>
-										<td>Set</td>
-										<td>Duplicates</td>
-										<td>Non Duplicates</td>
+										<th>Set</th>
+										<th>Duplicates</th>
+										<th>Non Duplicates</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
 							</table>
 						</div>
 					</div>
-					<div class="form-group">
-						<legend>The set "<span id="sSet"></span>" with <span id="sCount"></span> repetitions, is the set wiht more duplicates.</legend>
+					<div class="form-group" id="mostDuplicated" style="display: none;">
+						<legend>The set "<span id="sSet"></span>" with <span id="sCount"></span> repetitions, is the set with more duplicates.</legend>
 					</div>
 					<div class="form-group">
 						<div id="div_requeriment_d">
 							<legend>Items not valid</legend>
 							<ul id="requeriment_d"></ul>
+						</div>
+					</div>
+					<div class="row hidden" id="dialog">
+						<div class="container">
+							<div class="dialog-title  border-bottom">
+								<div class="col-md-11 col-sm-11 col-xs-11" id="dialogTitle-label">
+									Hola mundo
+								</div>
+								<div class="col-md-1 col-sm-1 col-xs-1" style="text-align: right;">
+									<span class="glyphicon glyphicon-remove cursor" id="closeDialog"></span>								
+								</div>
+							</div>
+							<div class="form-group" style="width: 90%;">
+								<ul id="set_duplicates"></ul>
+							</div>
 						</div>
 					</div>
 				</div>
